@@ -524,6 +524,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_randomforrest">RandomForrest</a></li>
+<li><a href="#_метод_главных_компонент_principal_component_analysis">Метод главных компонент (Principal Component Analysis)</a></li>
+<li><a href="#_t_sne">t-SNE</a></li>
+<li><a href="#_k_means_clustring">K-means (Clustring)</a></li>
+<li><a href="#_affinity_propagation_clustring">Affinity Propagation (Clustring)</a></li>
+<li><a href="#_агломеративная_кластеризация">Агломеративная кластеризация</a></li>
+<li><a href="#_dbscan_density_based_spatial_clustering_of_applications_with_noise">DBSCAN (Density-based spatial clustering of applications with noise)</a></li>
+<li><a href="#_gradient_boosting">Gradient Boosting</a></li>
 <li><a href="#_questions_and_answers">Questions and Answers</a></li>
 </ul>
 </div>
@@ -1120,6 +1127,201 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_метод_главных_компонент_principal_component_analysis">Метод главных компонент (Principal Component Analysis)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>метод для снижения размерности данных и проекции их на ортогональное подпространство признаков.</p>
+</li>
+<li>
+<p>наше предположение о том, что данные лежат в подпространстве меньшей размерности, позволяет нам отбросить "лишнее" подпространство в новой проекции, а именно то подпространство, вдоль осей которого эллипсоид будет наименее растянут. Мы будем это делать "жадно", выбирая по-очереди в качестве нового элемента базиса нашего нового подпространства последовательно ось эллипсоида из оставшихся, вдоль которой дисперсия будет максимальной.</p>
+</li>
+<li>
+<p>у PCA ограничение – он находит только линейные комбинации исходных признаков.</p>
+</li>
+<li>
+<p>На практике, выбирают столько главных компонент, чтобы оставить 90% дисперсии исходных данных</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_t_sne">t-SNE</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>алгоритм, который позволяет снижать размерность ваших данных, чтобы их было проще визуализировать. Этот алгоритм может свернуть сотни измерений к всего двум, сохраняя при этом важные отношения между данными: чем ближе объекты располагаются в исходном пространстве, тем меньше расстояние между этими объектами в пространстве сокращенной размерности.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_k_means_clustring">K-means (Clustring)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Алгоритм К-средних, наверное, самый популярный и простой алгоритм кластеризации и очень легко представляется в виде простого псевдокода:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Выбрать количество кластеров , которое нам кажется оптимальным для наших данных.</p>
+</li>
+<li>
+<p>Высыпать случайным образом в пространство наших данных  точек (центроидов).</p>
+</li>
+<li>
+<p>Для каждой точки нашего набора данных посчитать, к какому центроиду она ближе.</p>
+</li>
+<li>
+<p>Переместить каждый центроид в центр выборки, которую мы отнесли к этому центроиду.</p>
+</li>
+<li>
+<p>Повторять последние два шага фиксированное число раз, либо до тех пор пока центроиды не "сойдутся" (обычно это значит, что их смещение относительно предыдущего положения не превышает какого-то заранее заданного небольшого значения).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_affinity_propagation_clustring">Affinity Propagation (Clustring)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>данный подход не требует заранее определять число кластеров, на которое мы хотим разбить наши данные.</p>
+</li>
+<li>
+<p>Основная идея алгоритма заключается в том, что нам хотелось бы, чтобы наши наблюдения кластеризовались в группы на основе того, как они "общаются", или насколько они похожи друг на друга.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_агломеративная_кластеризация">Агломеративная кластеризация</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Algorithm</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Начинаем с того, что высыпаем на каждую точку свой кластер</p>
+</li>
+<li>
+<p>Сортируем попарные расстояния между центрами кластеров по возрастанию</p>
+</li>
+<li>
+<p>Берём пару ближайших кластеров, склеиваем их в один и пересчитываем центр кластера</p>
+</li>
+<li>
+<p>Повторяем п. 2 и 3 до тех пор, пока все данные не склеятся в один кластер</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dbscan_density_based_spatial_clustering_of_applications_with_noise">DBSCAN (Density-based spatial clustering of applications with noise)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>DBSCAN starts from core points, that is points with several quite close neighbours and creates the cluster by adding closest points. If one of added nearest points is also a core points (has sufficient number of close neighbours), all of its neighbours are also added (and this repeats recursively).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gradient_boosting">Gradient Boosting</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Подход к построению композиций в котором:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Базовые алгоритмы строятся последовательно, один за другим.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Мы не усредняемб а просто складываем базовые алгортмы</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Каждый следующий алгоритм строится таким образом, чтобы исправлять ошибки уже построенной композиции</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Благодаря тому, что построение композиций в бустинге является направленным, достаточно использовать
+простые базовые алгоритмы, например неглубокие деревья</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Переобучение</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Подобрать размер шага - коэффициент перед + b(x)</p>
+</li>
+<li>
+<p>использовать бэггинг</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Функционалы ошибки</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Типичный функционал ошибки в <strong>регрессии</strong> — это среднеквадратичная ошибка MSE (mean squared error)</p>
+</li>
+<li>
+<p>В задаче бинарной <strong>классификации</strong> (Y = {−1, +1}) популярным выбором для функции потерь является логи-стическая функция потерь</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Функциональный градиентный спуск</p>
+<div class="ulist">
+<ul>
+<li>
+<p>мы можем проводить оптимизацию в функциональном пространстве и итеративно искать приближения f(x) в виде самих функций</p>
+</li>
+<li>
+<p>будем решать задачу МНК-регрессии, пытаясь выправлять предсказания по этим остаткам.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_questions_and_answers">Questions and Answers</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -1265,6 +1467,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
+<p>перплексия (perplexity)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>мера того, насколько хорошо модель предсказывает детали тестовой коллекции</p>
+</li>
+<li>
+<p>Перплексией языковой модели на тестовой выборке является обратная вероятность этой выборки, нормализованная по количеству слов.</p>
+</li>
+<li>
+<p>чем меньше перплексия, тем лучше модель.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Non-parametric method</p>
 </li>
 <li>
@@ -1276,6 +1494,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>Как строить рекомендательные системы</p>
 </li>
+<li>
+<p>Types of distributions</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1284,7 +1505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2018-04-12 15:27:53 UTC
+Last updated 2018-04-13 07:23:18 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
